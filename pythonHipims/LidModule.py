@@ -53,15 +53,16 @@ class LidCal(Godunov):
         """
         self._h_internal = torch.as_tensor(h[mask > 0].type(self._tensorType),
                                            device=device)
-        self._qx_internal = torch.as_tensor(qx[mask > 0].type(
-            self._tensorType),
-            device=device)
-        self._qy_internal = torch.as_tensor(qy[mask > 0].type(
-            self._tensorType),
-            device=device)
-        self._wl_internal = torch.as_tensor(wl[mask > 0].type(
-            self._tensorType),
-            device=device)
+        
+        self._qx_internal = torch.as_tensor(qx[mask > 0].type(self._tensorType),
+                                            device=device)
+        
+        self._qy_internal = torch.as_tensor(qy[mask > 0].type(self._tensorType),
+                                            device=device)
+        
+        self._wl_internal = torch.as_tensor(wl[mask > 0].type(self._tensorType),
+                                            device=device)
+        
         self._z_internal = torch.as_tensor(z[mask > 0].type(self._tensorType),
                                            device=device)
 
@@ -140,22 +141,12 @@ class LidCal(Godunov):
                                               dtype=torch.uint8,
                                               device=device)
 
-        #self._landuseMask[self._lidMask > 0] = self._lidMask[self._lidMask > 0]
-        # self._landuseMask[self._lidMask == 30] =(self._landuse_index.numel()+1)* 10
-        # self._lidMask[self._lidMask == 30] = 0
-        
-        #modified for incorrect lidmask type not exceed road
-        #self._lidMask[self._landuseMask!=5]=0
-
         self._lidmask_index = self._lidmask_index + len(landuse_index)
         for i in range(0, len(lidmask_index_class), 1):
             self._landuseMask[self._lidMask ==
                               lidmask_index_class[i]] = self._lidmask_index[i]
         self._lidMask = (self._lidMask/10).int()
         self._lidMask = self._lidMask.type(torch.uint8)
-        # self._lidmask_index = self._lidmask_index - 1 #lidmask_index_in_landuse
-        #self._landuseMask[self._lidMask > 0] = self._lidMask[self._lidMask > 0]
-
 
         del mask, landuseMask, landuse_index, lidMask, lidmask_index, lidmask_index_class
         torch.cuda.empty_cache()
