@@ -16,7 +16,10 @@ __global__ void infiltrationCalculation_kernel(
     scalar_t *__restrict__ hydraulic_conductivity,
     scalar_t *__restrict__ capillary_head,
     scalar_t *__restrict__ water_content_diff,
-    scalar_t *__restrict__ cumulative_depth, scalar_t *__restrict__ dt)
+    scalar_t *__restrict__ cumulative_depth,
+    scalar_t *__restrict__ sewer_sink,
+    // scalar_t *__restrict__ sewer_sink_rate,
+    scalar_t *__restrict__ dt)
 {
   // get the index of cell
   int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -33,18 +36,15 @@ __global__ void infiltrationCalculation_kernel(
     scalar_t F_1 = 0.5 * (F_0 + dt[0] * K_s +
                           sqrt((F_0 + dt[0] * K_s) * (F_0 + dt[0] * K_s) +
                                4.0 * dt[0] * K_s * total_head * delta_theta));
-    if (K_s != 0 & phi_s != 0 & delta_theta != 0)
-    {
-      scalar_t delta_F = min(_h, F_1 - F_0);
-      cumulative_depth[i] += delta_F;
-      h_update[i] -= delta_F;
-      // printf("here");
-    }
-    else
-    {
-      h_update[i] = h_update[i];
-      // printf("there");
-    }
+    scalar_t delta_F = min(_h, F_1 - F_0);
+    cumulative_depth[i] += delta_F;
+    h_update[i] -= delta_F;
+
+    // Sewer sink
+    scalar_t _sink = sewer_sink[land_type] * dt[0];
+    scalar_t delta_h = min(_h, _sink);
+    delta_h = min(_h + h_update[i], delta_h);
+    h_update[i] -= delta_h;
   }
 }
 
@@ -53,7 +53,10 @@ void infiltrationCalculation_cuda(at::Tensor wetMask, at::Tensor h_update,
                                   at::Tensor hydraulic_conductivity,
                                   at::Tensor capillary_head,
                                   at::Tensor water_content_diff,
-                                  at::Tensor cumulative_depth, at::Tensor dt)
+                                  at::Tensor cumulative_depth,
+                                  at::Tensor sewer_sink,
+                                  // at::Tensor sewer_sink_rate,
+                                  at::Tensor dt)
 {
   const int N = wetMask.numel();
   at::cuda::CUDAGuard device_guard(h.device());
@@ -67,7 +70,10 @@ void infiltrationCalculation_cuda(at::Tensor wetMask, at::Tensor h_update,
                                                        hydraulic_conductivity.data<scalar_t>(),
                                                        capillary_head.data<scalar_t>(),
                                                        water_content_diff.data<scalar_t>(),
-                                                       cumulative_depth.data<scalar_t>(), dt.data<scalar_t>()); }));
+                                                       cumulative_depth.data<scalar_t>(),
+                                                       sewer_sink.data<scalar_t>(),
+                                                       //  sewer_sink_rate.data<scalar_t>(),
+                                                       dt.data<scalar_t>()); }));
   cudaError_t err = cudaGetLastError();
   if (err != cudaSuccess)
     printf("Error in load_textures: %s\n", cudaGetErrorString(err));

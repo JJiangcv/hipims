@@ -577,7 +577,11 @@ def importLidData(LidMask_path, device):
     lidmask_index_class = lidmask_index_class[lidmask_index_class>0]
     lidmask = torch.from_numpy(lidmask).to(device=device)
     lidmask_index = np.arange(lidmaskindexclass)
+    """lidmask_index_class: the number of LID measures with different parameters;
+    lidmask: the lid mask for each cell
+    lidmask_index: the index for each LID measure with from 0"""
 
+    del lidmaskindexclass
     return lidmask, lidmask_index_class, lidmask_index
 
 

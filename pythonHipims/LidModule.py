@@ -125,6 +125,7 @@ class LidCal(Godunov):
         torch.cuda.empty_cache()
 
     def set_lidlanduse(self, mask, landuseMask, landuse_index, lidMask, areaMask, lidmask_index_class, lidmask_index, device):
+        """Note: The type of landuse must less than 10"""
         self._landuseMask = torch.as_tensor(landuseMask[mask > 0],
                                             dtype=torch.uint8,
                                             device=device)
@@ -142,44 +143,54 @@ class LidCal(Godunov):
                                               device=device)
 
         self._lidmask_index = self._lidmask_index + len(landuse_index)
+        ## replace the landuse cell with LID measures witht the LID surface use
         for i in range(0, len(lidmask_index_class), 1):
             self._landuseMask[self._lidMask ==
                               lidmask_index_class[i]] = self._lidmask_index[i]
-        self._lidMask = (self._lidMask/10).int()
+        self._lidMask = (self._lidMask/10).int() ## find out the speacific LID and calculation method
         self._lidMask = self._lidMask.type(torch.uint8)
 
-        del mask, landuseMask, landuse_index, lidMask, lidmask_index, lidmask_index_class
+        del mask, landuseMask, landuse_index, lidMask, lidmask_index, areaMask, lidmask_index_class
         torch.cuda.empty_cache()
 
     def importLidPara(self, sudsPar_path, device):
         df = pd.ExcelFile(sudsPar_path, engine='openpyxl')
         surdata = pd.read_excel(df, 'Sur', header=0)
         data = np.array(surdata)
+        # Thickness[0]; Void Fraction[1]; Roughness[2]
         self._SurPara = torch.as_tensor(
             data, dtype=torch.double, device=device)
 
         soildata = pd.read_excel(df, 'Soil', header=0)
-        data1 = np.array(soildata)
+        data = np.array(soildata)
+        # Thickness[0]; Porosity(void volume / total volume)[1]; Field Capacity[2]; Initial Moisture (wilting point)[3];
+        # Saturated Hydraulic Conductivity[4]; slope of log(K) v. moisture content curve[5]; Suction Head[6]
         self._SoilPara = torch.as_tensor(
-            data1, dtype=torch.double, device=device)
+            data, dtype=torch.double, device=device)
 
         stordata = pd.read_excel(df, 'Stor', header=0)
         data = np.array(stordata)
+        # Thickness[0]; Void Fraction[1]; Saturated Hydraulic Conductivity[2]; Clog Factor[3];
         self._StorPara = torch.as_tensor(
             data, dtype=torch.double, device=device)
 
         pavedata = pd.read_excel(df, 'Pave', header=0)
         data = np.array(pavedata)
+        # Thickness[0]; void volume / total volume[1]; impervious area fraction[2]; permeability[3];
+        # clogging factor[4]; clogging regeneration interval[5]; degree of clogging regeneration[6]
         self._PavePara = torch.as_tensor(
             data, dtype=torch.double, device=device)
 
         draindata = pd.read_excel(df, 'Drain', header=0)
         data = np.array(draindata)
+        # underdrain flow coeff.[0]; underdrain head exponent[1]; offset height of underdrain[2]; rain barrel drain delay time[3];
+        # head when drain opens[4]; head when drain closes[5]; curve controlling flow rate[6]
         self._DrainPara = torch.as_tensor(
             data, dtype=torch.double, device=device)
 
         dramatdata = pd.read_excel(df, 'DraMat', header=0)
         data = np.array(dramatdata)
+        #Thickness[0]; Void Fraction[1]; Mannings n for green roof drainage mats[2]; slope/roughness term in Manning equation[3];
         self._DraMatPara = torch.as_tensor(
             data, dtype=torch.double, device=device)
 
@@ -201,7 +212,7 @@ class LidCal(Godunov):
             )+self._lidmask_index.numel()), dtype=torch.double, device=device)
             self._manning = torch.cat((manningtensor, manninglid), 1)
 
-        del manninglid, manningtensor
+        del manninglid, manningtensor, manning
         torch.cuda.empty_cache()
 
     def lidIMDInitial(self, Stor, soilMoi):
