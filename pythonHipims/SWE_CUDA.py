@@ -426,7 +426,7 @@ class Godunov:
         infiltrationCalculation.addinfiltration(
             self._wetMask, self._h_update, self._landuseMask, self._h_internal,
             self._hydraulic_conductivity, self._capillary_head,
-            self._water_content_diff, self._cumulativeWaterDepth, self.dt)
+            self._water_content_diff, self._cumulativeWaterDepth, self.sewer_sink, self.dt)
 
     # ====================================================
     # the station rainfall funcs
