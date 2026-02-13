@@ -1,7 +1,11 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: hipims
 Version: 1.1.0
 Summary: PyTorch implementation of "HiPIMS"
 Author: Jiaheng Zhao
 Author-email: j.zhao@lboro.ac.uk
 License: in CopyRight: in-house code
+Dynamic: author
+Dynamic: author-email
+Dynamic: license
+Dynamic: summary

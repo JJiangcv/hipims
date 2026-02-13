@@ -137,7 +137,7 @@ __device__ __forceinline__ scalar_t getPavementPermRate(scalar_t clogFactor, sca
 template <typename scalar_t>
 __device__ __forceinline__ void modpls_solve(scalar_t *x, scalar_t *f,
                                              scalar_t *xMin, scalar_t *xMax,
-                                             scalar_t areaRatio, scalar_t tstep)
+                                             scalar_t tstep)
 {
   int i;
   scalar_t xOld[4];
@@ -147,12 +147,12 @@ __device__ __forceinline__ void modpls_solve(scalar_t *x, scalar_t *f,
     xOld[i] = x[i];
     if (i > 0)
     {
-      x[i] = xOld[i] + f[i] * tstep * areaRatio;
+      x[i] = xOld[i] + f[i] * tstep;
       // printf("i:%d\t xold:%f\t f:%f\t x:%f\t xMax:%f\t areaRatio:%f\n", i,xOld[i],f[i],x[i],xMax[i],areaRatio);
     }
     else
     {
-      x[i] = f[i] * tstep * areaRatio;
+      x[i] = f[i] * tstep;
       // printf("i:%d\t xold:%f\t f:%f\t x:%f\t xMax:%f\t areaRatio:%f\n",i,xOld[0],f[0],x[0],xMax[0],areaRatio);
     }
     x[i] = min(x[i], xMax[i]);
@@ -162,9 +162,9 @@ __device__ __forceinline__ void modpls_solve(scalar_t *x, scalar_t *f,
 
 template <typename scalar_t>
 __global__ void lidCalculation_kernel(
-    int N, int32_t *__restrict__ wetMask, scalar_t *__restrict__ h_update,
+    int N, int32_t *__restrict__ wetMask_sorted, scalar_t *__restrict__ h_update,
     scalar_t *__restrict__ h, scalar_t *__restrict__ df, uint8_t *__restrict__ landuseMask, uint8_t *__restrict__ lidMask,
-    uint8_t num, uint8_t Index, scalar_t *__restrict__ areaMask,
+    int n_landuse, int num_lid_types, scalar_t *__restrict__ areaMask,
     scalar_t *__restrict__ SurPara, scalar_t *__restrict__ SoilPara,
     scalar_t *__restrict__ StorPara, scalar_t *__restrict__ PavePara,
     scalar_t *__restrict__ DrainPara, scalar_t *__restrict__ DraMatPara,
@@ -180,41 +180,49 @@ __global__ void lidCalculation_kernel(
   int j = blockIdx.x * blockDim.x + threadIdx.x;
   if (j < N)
   {
-    int32_t i = wetMask[j];
+    int32_t i = wetMask_sorted[j];
     uint8_t land_type = landuseMask[i];
     uint8_t lidtype = lidMask[i];
     scalar_t areaRatio = areaMask[i];
+    // LID Type definitions:
+    // 1 = Bio-Retention Cell (Biocell)
+    // 2 = Rain Garden
+    // 3 = Green Roof
+    // 4 = Infiltration Trench
+    // 5 = Permeable Pavement
+    // 6 = Vegetative Swale (no calculation)
+    // 7 = Rain Barrel (no calculation)
     if (lidtype < 1 || lidtype == 7)
     {
       return;
     }
     scalar_t tstep = dt[0];
-    uint8_t lidparaIndex = land_type - Index;
+    uint8_t lidparaIndex = land_type - n_landuse;
     // printf("Index:%d\t num:%d\t land_type:%d\n", Index,num,land_type);
-    scalar_t soilThickness = SoilPara[lidparaIndex + 0 * num];
-    scalar_t soilPorosity = SoilPara[lidparaIndex + 1 * num];
-    scalar_t soilFieldCap = SoilPara[lidparaIndex + 2 * num];
+    scalar_t soilThickness = SoilPara[lidparaIndex + 0 * num_lid_types];
+    scalar_t soilPorosity = SoilPara[lidparaIndex + 1 * num_lid_types];
+    scalar_t soilFieldCap = SoilPara[lidparaIndex + 2 * num_lid_types];
 
-    scalar_t soilWiltPoint = SoilPara[lidparaIndex + 3 * num];
-    scalar_t soilKS = SoilPara[lidparaIndex + 4 * num];
-    scalar_t soilKSlope = SoilPara[lidparaIndex + 5 * num];
-    scalar_t storageThickness = StorPara[lidparaIndex + 0 * num];
-    scalar_t storageVoidFrac = StorPara[lidparaIndex + 1 * num];
-    scalar_t paveThickness = PavePara[lidparaIndex + 0 * num];
-    scalar_t drainCoeff = DrainPara[lidparaIndex + 0 * num];
-    scalar_t paveFraction = 1 - PavePara[lidparaIndex + 2 * num];
-    scalar_t paveVoidFrac = PavePara[lidparaIndex + 1 * num] * paveFraction;
-    scalar_t pavekSat = PavePara[lidparaIndex + 3 * num];
-    scalar_t paveclogFactor = PavePara[lidparaIndex + 4 * num];
-    scalar_t drainexpon = DrainPara[lidparaIndex + 1 * num];
-    scalar_t drainoffset = DrainPara[lidparaIndex + 2 * num];
-    scalar_t surfaceThickness = SurPara[lidparaIndex + 0 * num];
-    scalar_t surfacevoid = SurPara[lidparaIndex + 1 * num];
+    scalar_t soilWiltPoint = SoilPara[lidparaIndex + 3 * num_lid_types];
+    scalar_t soilKS = SoilPara[lidparaIndex + 4 * num_lid_types];
+    scalar_t soilKSlope = SoilPara[lidparaIndex + 5 * num_lid_types];
+    scalar_t storageThickness = StorPara[lidparaIndex + 0 * num_lid_types];
+    scalar_t storageVoidFrac = StorPara[lidparaIndex + 1 * num_lid_types];
+    scalar_t paveThickness = PavePara[lidparaIndex + 0 * num_lid_types];
+    scalar_t drainCoeff = DrainPara[lidparaIndex + 0 * num_lid_types];
+    scalar_t paveFraction = 1 - PavePara[lidparaIndex + 2 * num_lid_types];
+    scalar_t paveVoidFrac = PavePara[lidparaIndex + 1 * num_lid_types] * paveFraction;
+    scalar_t pavekSat = PavePara[lidparaIndex + 3 * num_lid_types];
+    scalar_t paveclogFactor = PavePara[lidparaIndex + 4 * num_lid_types];
+    scalar_t drainexpon = DrainPara[lidparaIndex + 1 * num_lid_types];
+    scalar_t drainoffset = DrainPara[lidparaIndex + 2 * num_lid_types];
+    scalar_t surfaceThickness = SurPara[lidparaIndex + 0 * num_lid_types];
+    scalar_t surfacevoid = SurPara[lidparaIndex + 1 * num_lid_types];
 
-    scalar_t drainMatThickness = DraMatPara[lidparaIndex + 0 * num];
-    scalar_t drainMatFraction = DraMatPara[lidparaIndex + 1 * num];
-    scalar_t drainMatRough = DraMatPara[lidparaIndex + 2 * num];
-    scalar_t drainMatAlpha = DraMatPara[lidparaIndex + 3 * num];
+    scalar_t drainMatThickness = DraMatPara[lidparaIndex + 0 * num_lid_types];
+    scalar_t drainMatFraction = DraMatPara[lidparaIndex + 1 * num_lid_types];
+    scalar_t drainMatRough = DraMatPara[lidparaIndex + 2 * num_lid_types];
+    scalar_t drainMatAlpha = DraMatPara[lidparaIndex + 3 * num_lid_types];
     scalar_t StorageExfil = 0.0;
 
     scalar_t x[4];
@@ -342,8 +350,16 @@ __global__ void lidCalculation_kernel(
 
     if (lidtype == 3) // Green roof
     {
-      storageThickness = DraMatPara[lidparaIndex + 0 * num];
-      storageVoidFrac = DraMatPara[lidparaIndex + 1 * num];
+      storageThickness = DraMatPara[lidparaIndex + 0 * num_lid_types];
+      storageVoidFrac = DraMatPara[lidparaIndex + 1 * num_lid_types];
+      // 🔍 只打印第一个遇到的Green Roof cell
+      if (j == 0) {  // j是wetMask数组的索引，第一个wet cell
+        printf("\n=== GREEN ROOF [i=%d, j=%d] ===\n", i, j);
+        printf("BEFORE:\n");
+        printf("  x[2]: %.6f\n", x[2]);
+        printf("  soilTheta: %.6f, FC: %.6f\n", x[1], soilFieldCap);
+        printf("  storThick: %.6f, storVoid: %.6f\n", storageThickness, storageVoidFrac);
+      }
       scalar_t SurfaceInfil = df[i] / tstep;
       scalar_t availVolume;
 
@@ -401,6 +417,13 @@ __global__ void lidCalculation_kernel(
       f[1] = (SurfaceInfil - SoilPerc) / soilThickness;
       // printf("1: StorageDrain:%f\t SoilPerc:%f\n",StorageDrain, SoilPerc);
       f[2] = (SoilPerc - StorageDrain) / storageVoidFrac;
+      if (j == 0) {
+        printf("FLUX:\n");
+        printf("  SoilPerc: %.8f, StorDrain: %.8f\n", SoilPerc, StorageDrain);
+        printf("  f[2]: %.8f\n", f[2]);
+        printf("  xMax[2]: %.6f\n", xMax[2]);
+      }
+
       // printf("2: SoilPerc:%f\t StorageDrain:%f\t storageVoidFrac:%f\n",SoilPerc, StorageDrain, storageVoidFrac);
       drainrate[i] = StorageDrain;
     }
@@ -613,7 +636,18 @@ __global__ void lidCalculation_kernel(
     }
 
     // update
-    modpls_solve(x, f, xMin, xMax, areaRatio, tstep);
+    modpls_solve(x, f, xMin, xMax, tstep);
+    if (j == 0 && lidtype == 3) {
+      printf("AFTER modpls_solve:\n");
+      printf("  x[2]: %.6f\n", x[2]);
+      printf("  delta: %.8f = %.8f * %.4f * %.4f\n", 
+            f[2] * tstep * areaRatio, f[2], tstep, areaRatio);
+    }
+    // if (lidtype == 3 && (i % 500000 == 0 || j % 1000 == 0))  // 第一个wet cell
+    // {
+    //   printf("GR[%d]: x[1](soil)=%.6f x[2](storage)=%.6f f[1]=%.8f f[2]=%.8f areaRatio=%.4f\n",
+    //         i, x[1], x[2], f[1], f[2], areaRatio);
+    // }
 
     // h_update[i] = -x[0];
     // printf("x[0]:%f\t sv:%f\t h_update[i]:%f\n", x[0], surfacevoid, h_update[i]);
@@ -621,76 +655,30 @@ __global__ void lidCalculation_kernel(
     // h_update[i] = (h_update[i] - x[0])/surfacevoid;
     // printf("h_update:%f\t h:%f\n", h_update[i], h[i]);
 
-    if (lidtype == 3) // further improvement
+    if (lidtype == 3) // Green roof - FIXED
     {
-      if (cumuSurfaceWaterDepth[i] + (h_update[i] - x[0]) + h[i] <= surfaceThickness)
+      // 计算本时间步的净入流
+      scalar_t netInflow = (h_update[i] - x[0]) + h[i];
+      
+      // 更新累积储水量
+      scalar_t newSurfaceWater = cumuSurfaceWaterDepth[i] + netInflow;
+      
+      if (newSurfaceWater <= surfaceThickness)
       {
-        cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i] + (h_update[i] - x[0]);
-        if (cumuSurfaceWaterDepth[i] > surfaceThickness)
-        {
-          h_update[i] = cumuSurfaceWaterDepth[i] - surfaceThickness;
-          // printf("<<<<<<<<<cumuSurfaceWaterDepth[i]:%f\n", cumuSurfaceWaterDepth[i]);
-        }
-        else
-        {
-          h_update[i] = -h[i];
-        }
+        // Berm未满：全部储存
+        cumuSurfaceWaterDepth[i] = newSurfaceWater;
+        h_update[i] = -h[i];  // 清空表面水
       }
       else
       {
-        h_update[i] = h_update[i] - x[0];
-        cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i] + h_update[i] + h[i] - x[0];
-        // printf(">>>>>>cumuSurfaceWaterDepth[i]:%f\n", cumuSurfaceWaterDepth[i]);
+        // Berm满了：超出部分成为径流
+        cumuSurfaceWaterDepth[i] = surfaceThickness;
+        h_update[i] = (newSurfaceWater - surfaceThickness) - h[i];
       }
-
-      // if(x[0]==0 && h[i]==0) // no more infiltration
-      // {
-      //   h_update[i]=h_update[i];
-      //   // cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+h_update[i]+h[i];
-      //   cumuSurfaceWaterDepth[i] =0;
-      // }
-      // else // still could infiltrate
-      // {
-      //   if(cumuSurfaceWaterDepth[i] + (h_update[i]-x[0]) + h[i] <=surfaceThickness)
-      //   {
-      //     cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+(h_update[i]-x[0]);
-      //     h_update[i]= -h[i];
-      //     printf("<<<<<<<<<cumuSurfaceWaterDepth[i]:%f\n", cumuSurfaceWaterDepth[i]);
-      //   }
-      //   else
-      //   {
-      //     if(cumuSurfaceWaterDepth[i]==surfaceThickness && h_update[i]-x[0] + h[i]>0)
-      //     {
-      //       h_update[i] = h_update[i]-x[0];
-      //       cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+h_update[i]+h[i];
-      //       printf("<<<<<<<<<>>>>>>>>>>cumuSurfaceWaterDepth[i]:%f\n", cumuSurfaceWaterDepth[i]);
-      //     }
-      //     else
-      //     {
-      //       cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+h_update[i]+h[i]-x[0];
-      //       h_update[i] = cumuSurfaceWaterDepth[i]-surfaceThickness;
-      //       printf(">>>>>>cumuSurfaceWaterDepth[i]:%f\n", cumuSurfaceWaterDepth[i]);
-      //     }
-      //   }
-      cumuSurfaceWaterDepth[i] = min(cumuSurfaceWaterDepth[i], surfaceThickness);
-      //}
+      
+      // 边界检查
+      cumuSurfaceWaterDepth[i] = max(0.0, min(cumuSurfaceWaterDepth[i], surfaceThickness));
     }
-
-    // else if (lidtype == 5) //if (lidtype == 5 )
-    // {
-    //   // h_update[i] = (h_update[i] - x[0])/surfacevoid;
-    //   if (x[0]>0)
-    //   {
-    //     cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+(h_update[i]-x[0])+h[i];
-    //     h_update[i] = -h_update[i];
-    //     //(h_update[i] - x[0])/surfacevoid;
-    //   }
-    //   else
-    //   {
-    //     h_update[i] = (h_update[i] - x[0])/surfacevoid;
-    //     cumuSurfaceWaterDepth[i] = cumuSurfaceWaterDepth[i]+(h_update[i]-x[0])+h[i];
-    //   }
-    // }
     else
     {
       h_update[i] = (h_update[i] - x[0]) / surfacevoid;
@@ -702,18 +690,18 @@ __global__ void lidCalculation_kernel(
       }
     }
     cumuSoilMoisture[i] = x[1];
-    // printf("cumuSoilMoisture[%d]:%f\n h[%d]:%f\n", i, cumuSoilMoisture[i], i , h[i]);
     cumuStorageWaterDepth[i] = x[2];
     cumuPavementWaterDepth[i] = x[3];
-    // printf("%d\t%f\t%f\t%f\n", i, cumuSoilMoisture[i], cumuPavementWaterDepth[i],cumuStorageWaterDepth[i]);
-    // cumuSoilMoisture[i]);
+    if (j == 0 && lidtype == 3) {
+      printf("FINAL: cumuStorage[i] = %.6f\n\n", cumuStorageWaterDepth[i]);
+    }
   }
 }
 
 void lidCalculation_cuda(
-    at::Tensor wetMask, at::Tensor h_update, at::Tensor landuseMask,
-    at::Tensor lidMask, at::Tensor landuse_index,
-    at::Tensor lidmask_index, at::Tensor areaMask, at::Tensor h, at::Tensor df,
+    at::Tensor wetMask_sorted, at::Tensor h_update, at::Tensor landuseMask,
+    at::Tensor lidMask,
+    int n_landuse, at::Tensor areaMask, at::Tensor h, at::Tensor df,
     at::Tensor SurPara, at::Tensor SoilPara, at::Tensor StorPara,
     at::Tensor PavePara, at::Tensor DrainPara, at::Tensor DraMatPara,
     at::Tensor soilLimMin, at::Tensor soilLimMax, at::Tensor paveLimMax,
@@ -722,15 +710,15 @@ void lidCalculation_cuda(
     at::Tensor cumuPavementWaterDepth, at::Tensor drainrate, at::Tensor dx,
     at::Tensor dy, at::Tensor dt)
 {
-  const int N = wetMask.numel();
-  uint8_t num = lidmask_index.numel();
-  uint8_t Index = landuse_index.numel();
-  // printf("lidparaIndex%d\n", Index);
+  const int N = wetMask_sorted.numel();
+
   if (N == 0)
   {
-    // printf("sssss");
     return;
   }
+  //  SoilPara 推断 LID 类型数量
+  int num_lid_types = SoilPara.size(1);  // SoilPara shape: [7, n_lid_types]
+
   at::cuda::CUDAGuard device_guard(h.device());
   cudaStream_t stream = at::cuda::getCurrentCUDAStream();
   int thread_0 = 256;
@@ -738,9 +726,9 @@ void lidCalculation_cuda(
   AT_DISPATCH_FLOATING_TYPES(
       h.type(), "lidCalculation_cuda", ([&]
                                         { lidCalculation_kernel<scalar_t><<<block_0, thread_0, 0, stream>>>(
-                                              N, wetMask.data<int32_t>(), h_update.data<scalar_t>(),
+                                              N, wetMask_sorted.data<int32_t>(), h_update.data<scalar_t>(),
                                               h.data<scalar_t>(), df.data<scalar_t>(), landuseMask.data<uint8_t>(), lidMask.data<uint8_t>(),
-                                              num, Index, areaMask.data<scalar_t>(),
+                                              n_landuse, num_lid_types, areaMask.data<scalar_t>(),
                                               SurPara.data<scalar_t>(), SoilPara.data<scalar_t>(),
                                               StorPara.data<scalar_t>(), PavePara.data<scalar_t>(),
                                               DrainPara.data<scalar_t>(), DraMatPara.data<scalar_t>(),

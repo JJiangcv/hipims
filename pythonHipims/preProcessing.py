@@ -214,6 +214,8 @@ def setBoundaryEdge(mask,
     return mask
 
 
+
+    
 # ===========================================================================
 # CPU version, no limitation for raster size
 # ===========================================================================
@@ -374,7 +376,7 @@ def importDEMData_And_BC(DEM_path,
         demMasked = src.read(1, masked=True)
         demMeta = src.meta
     dem = np.ma.filled(demMasked, fill_value=-9999.)
-    mask = demMasked.mask
+    mask = np.ma.getmaskarray(demMasked)
 
     dem = torch.from_numpy(dem).to(device=device)
     # mask = torch.from_numpy(mask).to(device=device)
@@ -507,34 +509,59 @@ def importDEMData_And_BC(DEM_path,
 # ===========================================================================
 # read the landuse and return the parameters
 # ===========================================================================
-def importLanduseData(LandUse_path, device, level=0):
+# def importLanduseData(LandUse_path, device, level=0):
+#     with rio.open(LandUse_path) as src:
+#         demMasked = src.read(1, masked=True)
+#         demMeta = src.meta
+#     landuse = np.ma.filled(demMasked, fill_value=-127)
+#     # landuse = demMashed
+#     mask = demMasked.mask
+#     if level == 1:
+#         landuse = (landuse / 10).astype(int) - 1
+#         landuse_index_class = len(np.unique(landuse)) - 1
+#         landuse = torch.from_numpy(landuse).to(device=device)
+#     else:
+#         landuse_index_class = len(np.unique(landuse))-1
+#         # landuse_index_class = len(np.unique(landuse))
+#         indexes = np.unique(landuse)
+#         landuse = torch.from_numpy(landuse).to(device=device)
+#         if indexes[0] == -127:
+#             for i in range(1, len(indexes), 1):
+#                 landuse[landuse == indexes[i]] = i - 1
+#         else:
+#             for i in range(0, len(indexes), 1):
+#                 landuse[landuse == indexes[i]] = i
+
+
+    # landuse_index = np.arange(landuse_index_class)
+
+    # return landuse, landuse_index
+def importLanduseData(LandUse_path, device, level=0): # Jinghua 11/01/2023 For Newcastle Landuse Data
     with rio.open(LandUse_path) as src:
         demMasked = src.read(1, masked=True)
         demMeta = src.meta
-    landuse = np.ma.filled(demMasked, fill_value=-127)
+    # landuse = np.ma.filled(demMasked, fill_value=-127)
+    if level == 1:
+        landuse = np.ma.filled(demMasked, fill_value=11)
+    else:
+        landuse = np.ma.filled(demMasked, fill_value=1)
     # landuse = demMashed
     mask = demMasked.mask
+
     if level == 1:
         landuse = (landuse / 10).astype(int) - 1
         landuse_index_class = len(np.unique(landuse)) - 1
         landuse = torch.from_numpy(landuse).to(device=device)
     else:
-        landuse_index_class = len(np.unique(landuse))-1
-        # landuse_index_class = len(np.unique(landuse))
+        landuse_index_class = len(np.unique(landuse))
         indexes = np.unique(landuse)
         landuse = torch.from_numpy(landuse).to(device=device)
-        if indexes[0] == -127:
-            for i in range(1, len(indexes), 1):
-                landuse[landuse == indexes[i]] = i - 1
-        else:
-            for i in range(0, len(indexes), 1):
-                landuse[landuse == indexes[i]] = i
-
+        for i in range(0, len(indexes), 1):
+            landuse[landuse == indexes[i]] = i
 
     landuse_index = np.arange(landuse_index_class)
 
     return landuse, landuse_index
-
 
 # def importLanduseData(LandUse_path, device, level=0):
 #     with rio.open(LandUse_path) as src:
@@ -564,25 +591,48 @@ def importLanduseData(LandUse_path, device, level=0):
 #     return landuse, landuse_index
 
 
-def importLidData(LidMask_path, device):
+# def importLidData(LidMask_path, device):
+#     with rio.open(LidMask_path) as src:
+#         demMasked = src.read(1, masked=True)
+#         demMeta = src.meta
+#     lidmask = np.ma.filled(demMasked, fill_value=-127)
+#     #lidmask[lidmask==0] = -127
+#     # landuse = demMashed
+#     # mask = demMasked.mask
+#     lidmaskindexclass = len(np.unique(lidmask[lidmask>0]))
+#     lidmask_index_class = np.unique(lidmask) 
+#     lidmask_index_class = lidmask_index_class[lidmask_index_class>0]
+#     lidmask = torch.from_numpy(lidmask).to(device=device)
+#     lidmask_index = np.arange(lidmaskindexclass)
+#     """lidmask_index_class: the number of LID measures with different parameters;
+#     lidmask: the lid mask for each cell
+#     lidmask_index: the index for each LID measure with from 0"""
+
+#     del lidmaskindexclass
+#     return lidmask, lidmask_index_class, lidmask_index
+
+def importLidMask(LidMask_path, device): # Jinghua 11/01/2023 For Newcastle LID Data
     with rio.open(LidMask_path) as src:
         demMasked = src.read(1, masked=True)
-        demMeta = src.meta
-    lidmask = np.ma.filled(demMasked, fill_value=-127)
-    #lidmask[lidmask==0] = -127
-    # landuse = demMashed
-    # mask = demMasked.mask
-    lidmaskindexclass = len(np.unique(lidmask[lidmask>0]))
-    lidmask_index_class = np.unique(lidmask) 
-    lidmask_index_class = lidmask_index_class[lidmask_index_class>0]
-    lidmask = torch.from_numpy(lidmask).to(device=device)
-    lidmask_index = np.arange(lidmaskindexclass)
+        nodata = src.nodata
+    if nodata is not None:
+        demMasked = np.where(demMasked == nodata, 0, demMasked)
+    demMasked = np.where(demMasked < 0, 0, demMasked)
+    demMasked = demMasked.astype(np.int32)
+
+    lidmask = torch.from_numpy(demMasked).to(device=device)
+
+    # lidmask_index_class = np.unique(demMasked)
+    # lidmask_index_class = lidmask_index_class[lidmask_index_class > 0]
+
+    # lidmask_index = np.arange(0, len(lidmask_index_class))
+
     """lidmask_index_class: the number of LID measures with different parameters;
     lidmask: the lid mask for each cell
     lidmask_index: the index for each LID measure with from 0"""
 
-    del lidmaskindexclass
-    return lidmask, lidmask_index_class, lidmask_index
+    return lidmask
+
 
 
 def importAreaMask(AreaMask_path, device):

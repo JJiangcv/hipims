@@ -6,9 +6,11 @@ fluxMask_jjh_modified
 frictionCalculation
 frictionCalculation_implicit
 friction_implicit_andUpdate_jh
-infiltrationCalculation
+infiltration_sewer
 lidCal
+lidCal_new
 lidFlux
 lidInfil
+lidInfil_new
 station_PrecipitationCalculation
 timeControl

@@ -1,0 +1,34 @@
+ninja_required_version = 1.3
+cxx = /home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++
+nvcc = /usr/local/cuda/bin/nvcc
+
+cflags = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -fPIC -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/TH -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/include/python3.10 -c
+post_cflags = -std=c++14 -O2 -Wall -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=lidFlux -D_GLIBCXX_USE_CXX11_ABI=0
+cuda_cflags = -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/TH -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/include/python3.10 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -std=c++14 --expt-extended-lambda --use_fast_math -Xcompiler -Wall -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=lidFlux -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 -ccbin /home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-cc
+cuda_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+
+
+build /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid.o: cuda_compile /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu
+build /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid_interface.o: compile /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp
+
+
+
+
+
+
+

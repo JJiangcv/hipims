@@ -22,7 +22,7 @@ import math
 import frictionCalculation
 import timeControl
 import euler_update
-import infiltrationCalculation
+import infiltration_sewer
 import station_PrecipitationCalculation
 import frictionCalculation_implicit
 import friction_implicit_andUpdate_jh
@@ -77,7 +77,7 @@ class Godunov:
         self.t = torch.tensor([t], dtype=self._tensorType, device=device)
         self._export_n = export_n
 
-        self._maxTimeStep = torch.tensor([60.],
+        self._maxTimeStep = torch.tensor([10.],
                                          dtype=self._tensorType,
                                          device=device)
         # self._maxTimeStep = torch.tensor([CFL * dx / (sqrt(dx / 100.))],
@@ -277,14 +277,14 @@ class Godunov:
         del mask, landuseMask
         torch.cuda.empty_cache()
 
-    def set_sink(self, sink_rate_road, sink_rate_urban, device):
-        self._sinkRate = torch.zeros_like(self._h_internal,
-                                          device=device)
-        self._sinkRate[self._landuseMask == 1] = sink_rate_urban
-        # self._sinkRate[self._landuseMask==3]= sink_rate_urban
-        self._sinkRate[self._landuseMask == 4] = sink_rate_road
-        del sink_rate_road, sink_rate_urban
-        torch.cuda.empty_cache()
+    # def set_sink(self, sink_rate_road, sink_rate_urban, device):
+    #     self._sinkRate = torch.zeros_like(self._h_internal,
+    #                                       device=device)
+    #     self._sinkRate[self._landuseMask == 1] = sink_rate_urban
+    #     # self._sinkRate[self._landuseMask==3]= sink_rate_urban
+    #     self._sinkRate[self._landuseMask == 4] = sink_rate_road
+    #     del sink_rate_road, sink_rate_urban
+    #     torch.cuda.empty_cache()
 
     def set_landuse_cpu_to_gpu(self, landuseMask, device):
         self._landuseMask = torch.as_tensor(landuseMask[mask > 0],
@@ -421,12 +421,47 @@ class Godunov:
             self._manning,
             self.dt,
         )
+    
+    def set_landuse_based_data(self, data, landuse_uniq):
+        """
+        设置基于土地利用的数据。
+        兼容三种输入类型：
+        1. 字典 (dict): 包含 'default_value' 和 'special_param_value' 的配置
+        2. 标量 (scalar): 单个数值，应用到所有土地利用类型
+        3. 数组/列表 (array/list): 直接作为查找表 (Lookup Table)，如您的 Sewer_sink
+        """
+        # 情况 1: 如果传入的是字典 (旧的复杂配置方式)
+        if isinstance(data, dict):
+            data_array = np.zeros(len(landuse_uniq)) + data['default_value']
+            ind = np.isin(landuse_uniq, data['special_land_type_value'])
+            data_array[ind] = data['special_param_value']
+            
+        # 情况 2: 如果传入的是标量 (例如 0.035)
+        elif np.isscalar(data):
+            data_array = np.zeros(len(landuse_uniq)) + data
+            
+        # 情况 3: 如果传入的是数组 (您的 Sewer_sink 情况)
+        # 假设传入的数组已经是对应土地利用类型的参数表
+        else:
+            data_array = np.array(data)
+            
+        return data_array
 
-    def addInfiltrationSource(self):
-        infiltrationCalculation.addinfiltration(
+
+    def set_sewer_sink(self, sewer, landuse_uniq, device):
+        temp_data = self.set_landuse_based_data(sewer, landuse_uniq)
+        self.sewer_sink = torch.tensor(
+            temp_data, 
+            device=device,       # 关键：必须在 GPU 上
+            dtype=self._tensorType    # 关键：必须是 float64 (Double)
+        )
+
+    def add__infiltration_and_sewer_source(self):
+        infiltration_sewer.addInfiltrationAndSewer(
             self._wetMask, self._h_update, self._landuseMask, self._h_internal,
             self._hydraulic_conductivity, self._capillary_head,
-            self._water_content_diff, self._cumulativeWaterDepth, self.sewer_sink, self.dt)
+            self._water_content_diff, self._cumulativeWaterDepth, 
+            self.sewer_sink, self.dt)
 
     # ====================================================
     # the station rainfall funcs
@@ -538,10 +573,7 @@ class Godunov:
     # ====================================================
 
     def addRadarRainfall(self, rainfall_raster):
-        # self.totalRain += torch.sum(rainfall_raster * self.dt)
         self.totalRain += rainfall_raster
-        # self._h_update[(self._landuseMask==1)]+= rainfall_raster
-        # self._h_update[(self._landuseMask==5)]+= rainfall_rasteR
         self._h_update[:] += rainfall_raster
 
     def add_runoff_Rainfall(self, rainfall_raster):

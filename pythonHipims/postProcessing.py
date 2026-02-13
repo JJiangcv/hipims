@@ -11,6 +11,7 @@ from matplotlib import colors
 import seaborn as sns
 import numpy as np
 from rasterio.windows import Window
+from hipims_io import spatial_analysis as hpio_sa
 try:
     from preProcessing import *
 except ImportError:
@@ -32,6 +33,87 @@ except ImportError:
     #     internal_data = torch.load(result_list[i])
     #     DATA = internal_data.to(torch.float32)
     #     data_cpu = DATA.cpu().numpy()
+
+def exportRaster_gz(DEM_path, outPutPath, header_path, archive_pt=False):
+    from glob import glob
+    result_list = glob(outPutPath + '/*.pt')
+    result_list_qx = glob(outPutPath + '/qx*.pt')
+    result_list_qy = glob(outPutPath + '/qy*.pt')
+    result_list_h = glob(outPutPath + '/h_tensor*.pt')
+
+    result_list_h.sort()
+    result_list_qx.sort()
+    result_list_qy.sort()
+
+    device = torch.device("cuda",
+                          int(result_list[0][result_list[0].rfind(':') + 1]))
+    dem, mask, mask_boundary, demMeta = importDEMData(DEM_path, device)
+
+    dem = dem.to(torch.float32)
+    header= hpio_sa.arc_header_read(header_path)
+
+    mask = ~mask
+    print(demMeta)
+    mask_cpu = mask.cpu().numpy()
+    print(len(result_list_h))
+
+    for i in range(len(result_list)):
+        internal_data = torch.load(result_list[i])
+        dem[~mask] = internal_data.to(torch.float32)
+        # print(dem)
+        data_cpu = dem.cpu().numpy()
+        data_cpu = ma.masked_array(data_cpu, mask=mask_cpu)
+        nodatavalue = -9999.
+        data_cpu = ma.filled(data_cpu, fill_value=nodatavalue)
+        topAddress = result_list[i][:result_list[i].rfind('_')]
+        timeAddress = result_list[i][result_list[i].find('[') +
+                                     1:result_list[i].find(']')]
+        outPutName = topAddress + "_" + timeAddress + 'gz'
+        hpio_sa.arcgridwrite(outPutName, data_cpu, header, compression=True)
+
+        if (archive_pt == False):
+            os.remove(result_list[i])
+
+def exportRaster_gz_huv(DEM_path, outPutPath, header_path, archive_pt=False):
+    from glob import glob
+    result_list = glob(outPutPath + '/*.pt')
+    result_list_u = glob(outPutPath + '/u*.pt')
+    result_list_v = glob(outPutPath + '/v*.pt')
+    result_list_h = glob(outPutPath + '/h_tensor*.pt')
+
+    result_list_h.sort()
+    result_list_u.sort()
+    result_list_v.sort()
+
+    device = torch.device("cuda",
+                          int(result_list[0][result_list[0].rfind(':') + 1]))
+    dem, mask, mask_boundary, demMeta = importDEMData(DEM_path, device)
+
+    dem = dem.to(torch.float32)
+    header= hpio_sa.arc_header_read(header_path)
+
+    mask = ~mask
+    print(demMeta)
+    mask_cpu = mask.cpu().numpy()
+    print(len(result_list_h))
+
+    for i in range(len(result_list)):
+        internal_data = torch.load(result_list[i])
+        dem[~mask] = internal_data.to(torch.float32)
+        # print(dem)
+        data_cpu = dem.cpu().numpy()
+        data_cpu = ma.masked_array(data_cpu, mask=mask_cpu)
+        nodatavalue = -9999.
+        data_cpu = ma.filled(data_cpu, fill_value=nodatavalue)
+        topAddress = result_list[i][:result_list[i].rfind('_')]
+        timeAddress = result_list[i][result_list[i].find('[') +
+                                     1:result_list[i].find(']')]
+        outPutName = topAddress + "_" + timeAddress + 'gz'
+        hpio_sa.arcgridwrite(outPutName, data_cpu, header, compression=True)
+
+        if (archive_pt == False):
+            os.remove(result_list[i])
+# end
 
 def exportRaster_tiff(DEM_path, outPutPath):
     from glob import glob

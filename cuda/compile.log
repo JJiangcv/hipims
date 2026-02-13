@@ -1,0 +1,872 @@
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/utils/cpp_extension.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging  # type: ignore[attr-defined]
+running install
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:90: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running build
+running build_ext
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/utils/cpp_extension.py:387: UserWarning: The detected CUDA version (11.3) has a minor version mismatch with the version that was used to compile PyTorch (11.7). Most likely this shouldn't be a problem.
+  warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
+building 'euler_update' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/euler_update.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/euler_update_Kernel.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/euler_update.so
+building 'fluxCalculation_jh_modified_surface' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_jh_modified_surface.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_jh_modified_surface_Kernel.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/fluxCalculation_jh_modified_surface.so
+building 'fluxCal_2ndOrder_jh_improved' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/flucCal_2ndOrder_jh_improved_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_2ndOrder_jh_improved.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/fluxCal_2ndOrder_jh_improved.so
+building 'frictionCalculation' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/frictionCUDA_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/friction_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/frictionCalculation.so
+building 'frictionCalculation_implicit' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/friction_implicit_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/friction_implicit_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/frictionCalculation_implicit.so
+building 'friction_implicit_andUpdate_jh' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/friction_implicit_andUpdate_jh_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/friction_implicit_andUpdate_jh_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/friction_implicit_andUpdate_jh.so
+building 'infiltration_sewer' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/infiltrationCUDA_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/infiltration_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/infiltration_sewer.so
+building 'station_PrecipitationCalculation' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/stationPrecipitation_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/stationPrecipitation_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/station_PrecipitationCalculation.so
+building 'timeControl' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/timeControl.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/timeControl_Kernel.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/timeControl.so
+building 'fluxMask' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxMaskGenerator.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxMaskGenerator_Kernel.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/fluxMask.so
+building 'fluxMask_jjh_modified' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxMaskGenerator_Kernel_jjh_modified.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxMaskGenerator_jjh_modified.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/fluxMask_jjh_modified.so
+building 'lidInfil' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidInfiltration_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidInfiltration_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/lidInfil.so
+building 'lidCal' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidCalCUDA_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidCal_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/lidCal.so
+building 'lidInfil_new' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidinfil_new_Kernel.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidinfil_new_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/lidInfil_new.so
+building 'lidCal_new' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/1] /usr/local/cuda/bin/nvcc  -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/TH -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/include/python3.10 -c -c /home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu -o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidCalCUDANew_Kernelnew.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -std=c++14 --expt-extended-lambda --use_fast_math -Xcompiler -Wall -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=lidCal_new -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 -ccbin /home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-cc
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(195): warning: variable "areaRatio" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(206): warning: variable "surfaceRough" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(217): warning: variable "storageKS" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(218): warning: variable "storageClog" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(195): warning: variable "areaRatio" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(206): warning: variable "surfaceRough" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(217): warning: variable "storageKS" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(218): warning: variable "storageClog" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(195): warning: variable "areaRatio" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(206): warning: variable "surfaceRough" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(217): warning: variable "storageKS" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(218): warning: variable "storageClog" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(195): warning: variable "areaRatio" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(206): warning: variable "surfaceRough" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(217): warning: variable "storageKS" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/lidCalCUDANew_Kernelnew.cu(218): warning: variable "storageClog" was declared but never referenced
+          detected during instantiation of "void lidCalculation_kernel(int, int32_t *, scalar_t *, scalar_t *, scalar_t *, uint8_t *, uint8_t *, int, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Float>]" 
+(703): here
+
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidCalCUDANew_Kernel_interface.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/lidCalCUDANew_Kernelnew.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/lidCal_new.so
+building 'lidFlux' extension
+Emitting ninja build file /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/2] /home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -MMD -MF /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid_interface.o.d -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -fPIC -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/TH -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/include/python3.10 -c -c /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp -o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid_interface.o -std=c++14 -O2 -Wall -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=lidFlux -D_GLIBCXX_USE_CXX11_ABI=0
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp: In function 'void fluxCalculation_lid(at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor)':
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:26:3: note: in expansion of macro 'CHECK_INPUT'
+   26 |   CHECK_INPUT(h);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:27:3: note: in expansion of macro 'CHECK_INPUT'
+   27 |   CHECK_INPUT(wetMask);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:28:3: note: in expansion of macro 'CHECK_INPUT'
+   28 |   CHECK_INPUT(lidMask);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:29:3: note: in expansion of macro 'CHECK_INPUT'
+   29 |   CHECK_INPUT(wl);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:30:3: note: in expansion of macro 'CHECK_INPUT'
+   30 |   CHECK_INPUT(z);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:31:3: note: in expansion of macro 'CHECK_INPUT'
+   31 |   CHECK_INPUT(qx);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:32:3: note: in expansion of macro 'CHECK_INPUT'
+   32 |   CHECK_INPUT(qy);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:33:3: note: in expansion of macro 'CHECK_INPUT'
+   33 |   CHECK_INPUT(index);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:34:3: note: in expansion of macro 'CHECK_INPUT'
+   34 |   CHECK_INPUT(dx);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:35:3: note: in expansion of macro 'CHECK_INPUT'
+   35 |   CHECK_INPUT(normal);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:36:3: note: in expansion of macro 'CHECK_INPUT'
+   36 |   CHECK_INPUT(given_q);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:37:3: note: in expansion of macro 'CHECK_INPUT'
+   37 |   CHECK_INPUT(given_depth);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:38:3: note: in expansion of macro 'CHECK_INPUT'
+   38 |   CHECK_INPUT(dt);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/core/Device.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:22: warning: 'at::DeprecatedTypeProperties& at::Tensor::type() const' is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |                      ^
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro 'C10_UNLIKELY'
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/c10/util/Exception.h:464:7: note: in expansion of macro 'C10_UNLIKELY_OR_CONST'
+  464 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:12:3: note: in expansion of macro 'TORCH_CHECK'
+   12 |   TORCH_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor. ")
+      |   ^~~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:16:3: note: in expansion of macro 'CHECK_CUDA'
+   16 |   CHECK_CUDA(x);                                                               \
+      |   ^~~~~~~~~~
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:39:3: note: in expansion of macro 'CHECK_INPUT'
+   39 |   CHECK_INPUT(t);
+      |   ^~~~~~~~~~~
+In file included from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid_interface.cpp:1:
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:216:30: note: declared here
+  216 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+[2/2] /usr/local/cuda/bin/nvcc  -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/TH -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/home/lunet/cvjj7/.conda/envs/hipims_lidold/include/python3.10 -c -c /home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu -o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -std=c++14 --expt-extended-lambda --use_fast_math -Xcompiler -Wall -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=lidFlux -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 -ccbin /home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-cc
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(370): warning: parameter "normal" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::boundary_conditions(int, scalar_t *, scalar_t *, const scalar_t *, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(547): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(383): warning: parameter "normal" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::boundary_conditions(int, scalar_t *, scalar_t *, const scalar_t *, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(547): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(43): warning: parameter "h_small" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::hllcFluxSolver(scalar_t *, scalar_t *, scalar_t *, scalar_t *, const scalar_t *, const scalar_t *, scalar_t &, scalar_t &, scalar_t &, scalar_t, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(626): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(370): warning: parameter "normal" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::boundary_conditions(int, scalar_t *, scalar_t *, const scalar_t *, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(547): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(383): warning: parameter "normal" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::boundary_conditions(int, scalar_t *, scalar_t *, const scalar_t *, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(547): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/hipims_lidold/cuda/fluxCal_lid.cu(43): warning: parameter "h_small" was declared but never referenced
+          detected during:
+            instantiation of "void <unnamed>::hllcFluxSolver(scalar_t *, scalar_t *, scalar_t *, scalar_t *, const scalar_t *, const scalar_t *, scalar_t &, scalar_t &, scalar_t &, scalar_t, scalar_t, scalar_t, scalar_t) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(626): here
+            instantiation of "void <unnamed>::fluxCalculation_kernel(int, int, int, int, int, int, int32_t *, uint8_t *, int, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, const int32_t *, const scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *, scalar_t *) [with scalar_t=c10::impl::ScalarTypeToCPPTypeT<c10::ScalarType::Double>]" 
+(690): here
+
+/home/lunet/cvjj7/.conda/envs/hipims_lidold/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -pthread -B /home/lunet/cvjj7/.conda/envs/hipims_lidold/compiler_compat -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -Wl,-rpath-link,/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/lunet/cvjj7/.conda/envs/hipims_lidold/include /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid.o /home/lunet/cvjj7/hipims_lidold/cuda/build/temp.linux-x86_64-cpython-310/fluxCal_lid_interface.o -L/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-cpython-310/lidFlux.so
+running install_lib
+copying build/lib.linux-x86_64-cpython-310/fluxMask_jjh_modified.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/infiltration_sewer.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/timeControl.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/lidInfil.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/frictionCalculation.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/fluxCalculation_jh_modified_surface.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/friction_implicit_andUpdate_jh.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/lidCal_new.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/station_PrecipitationCalculation.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/fluxCal_2ndOrder_jh_improved.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/euler_update.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/lidInfil_new.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/fluxMask.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/frictionCalculation_implicit.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/lidFlux.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+copying build/lib.linux-x86_64-cpython-310/lidCal.so -> /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages
+running install_egg_info
+running egg_info
+creating hipims.egg-info
+writing hipims.egg-info/PKG-INFO
+writing dependency_links to hipims.egg-info/dependency_links.txt
+writing top-level names to hipims.egg-info/top_level.txt
+writing manifest file 'hipims.egg-info/SOURCES.txt'
+reading manifest file 'hipims.egg-info/SOURCES.txt'
+writing manifest file 'hipims.egg-info/SOURCES.txt'
+removing '/home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/hipims-1.1.0-py3.10.egg-info' (and everything under it)
+Copying hipims.egg-info to /home/lunet/cvjj7/.conda/envs/hipims_lidold/lib/python3.10/site-packages/hipims-1.1.0-py3.10.egg-info
+running install_scripts
