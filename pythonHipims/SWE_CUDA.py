@@ -579,10 +579,10 @@ class Godunov:
     def add_runoff_Rainfall(self, rainfall_raster):
         self._h_update += rainfall_raster * self.dt
 
-    def sinkrate(self):
-        # self._h_update[self._landuseMask ==
-        #                4] = self._h_update[self._landuseMask == 4]*1.20
-        self._h_update[:] -= self._sinkRate * self.dt
+    # def sinkrate(self):
+    #     # self._h_update[self._landuseMask ==
+    #     #                4] = self._h_update[self._landuseMask == 4]*1.20
+    #     self._h_update[:] -= self._sinkRate * self.dt
 
     def get_h(self):
         return self._h_internal

@@ -4,6 +4,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+__pycache__/*
 
 # ===========================
 # 编译产物 (C++/CUDA/Linux) - 重点！
