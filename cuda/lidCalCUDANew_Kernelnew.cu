@@ -109,12 +109,12 @@ __device__ __forceinline__ scalar_t getStorageDrainRate(
   if (head > ZERO)
   {
     outflow = drainCoeff * pow(head, drainExpon);
-    static int count = 0;
-    if (count < 3) {
-        printf("Drain: coeff=%.6f head=%.6f exp=%.2f -> out=%.6e\n",
-               drainCoeff, head, drainExpon, outflow);
-        count++;
-    }
+    // static int count = 0;
+    // if (count < 3) {
+    //     printf("Drain: coeff=%.6f head=%.6f exp=%.2f -> out=%.6e\n",
+    //            drainCoeff, head, drainExpon, outflow);
+    //     count++;
+    // }
   }
   return outflow;
 }
@@ -143,7 +143,7 @@ __device__ __forceinline__ scalar_t getPavementPermRate(scalar_t clogFactor, sca
 //  Output:  returns the reduced permeability of the pavement layer (ft/s).
 //
 {
-  double permReduction = 0.0;
+  scalar_t permReduction = static_cast<scalar_t>(0.0);
   if (clogFactor > 0.0)
   {
     // ... find permeabiity reduction factor
@@ -483,8 +483,8 @@ __global__ void lidCalculation_kernel(
             f[3] = 0.0;
             drainrate[i] = StorageDrain;
             x[0] = 0.0;
-            printf("[OUTFLOW_DEBUG] i=%d, Theta=%.6f, StorDepth=%.6f, Outflow=%.8f\n", 
-                i, soilTheta, storageDepth, StorageDrain);
+            // printf("[OUTFLOW_DEBUG] i=%d, Theta=%.6f, StorDepth=%.6f, Outflow=%.8f\n", 
+            //     i, soilTheta, storageDepth, StorageDrain);
 
         }
         else if (lid_type == 4) // Infiltration Trench

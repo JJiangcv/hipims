@@ -623,16 +623,22 @@ class LidCal(Godunov):
         
         Note: wetMask is sorted by LID type for better GPU performance
         """
-        current_wet_indices = self._wetMask.long()
-        lid_indices = (self._lidMask > 0).nonzero(as_tuple=False).flatten()
-        combined_indices = torch.cat((current_wet_indices, lid_indices))
-        unique_indices = torch.unique(combined_indices)
-        calculation_mask = unique_indices
-        if calculation_mask.numel() > 0:
-            wet_lid_types = self._lidMask[calculation_mask]
-            sort_indices = torch.argsort(wet_lid_types, stable=True)
-            wetMask_sorted = calculation_mask[sort_indices].int()
+        # current_wet_indices = self._wetMask.long()
+        # lid_indices = (self._lidMask > 0).nonzero(as_tuple=False).flatten()
+        # combined_indices = torch.cat((current_wet_indices, lid_indices))
+        # unique_indices = torch.unique(combined_indices)
+        # calculation_mask = unique_indices
+        # if calculation_mask.numel() > 0:
+        #     wet_lid_types = self._lidMask[calculation_mask]
+        #     sort_indices = torch.argsort(wet_lid_types, stable=True)
+        #     wetMask_sorted = calculation_mask[sort_indices].int()
 
+        lid_indices = (self._lidMask > 0).nonzero(as_tuple=False).flatten()
+        if lid_indices.numel() == 0:
+            return
+        wet_lid_types = self._lidMask[lid_indices]
+        sort_indices = torch.argsort(wet_lid_types, stable = True)
+        wetMask_sorted = lid_indices[sort_indices].int()
 
         # if self._wetMask.numel() > 0:
         #     # Get LID types for wet cells
@@ -643,17 +649,17 @@ class LidCal(Godunov):
         # else:
         #     wetMask_sorted = self._wetMask
 
-            n_landuse = self._landuse_index.numel()
+        n_landuse = self._landuse_index.numel()
 
 
 
-            # lidInfil.addLidInfiltrationSource(self._wetMask, self._h_update, self._landuseMask, self._lidMask, self._landuse_index, self._lidmask_index, 
-        #                                   self._Sat, self._h_internal, self._f_dt, self._soilInfilKs, self._soilInfilS, self._soilInfilIMDmax,
-        #                                   self._soilInfilLu, self._soilFu, self._soilIMD, self._SoilPara, self._SurPara,self._cumuSurfaceWaterDepth, self.dt)
-            lidInfil_new.addLidInfiltrationSource_new(wetMask_sorted, self._h_update, self._landuseMask, self._lidMask, n_landuse, 
-                                            self._Sat, self._h_internal, self._f_dt, self._soilInfilKs, self._soilInfilS, self._soilInfilIMDmax,
-                                            self._soilInfilLu, self._soilFu, self._soilIMD, self._SoilPara, self._SurPara,self._cumuSurfaceWaterDepth, 
-                                            self._areaMask, self.dt)
+        # lidInfil.addLidInfiltrationSource(self._wetMask, self._h_update, self._landuseMask, self._lidMask, self._landuse_index, self._lidmask_index, 
+    #                                   self._Sat, self._h_internal, self._f_dt, self._soilInfilKs, self._soilInfilS, self._soilInfilIMDmax,
+    #                                   self._soilInfilLu, self._soilFu, self._soilIMD, self._SoilPara, self._SurPara,self._cumuSurfaceWaterDepth, self.dt)
+        lidInfil_new.addLidInfiltrationSource_new(wetMask_sorted, self._h_update, self._landuseMask, self._lidMask, n_landuse, 
+                                        self._Sat, self._h_internal, self._f_dt, self._soilInfilKs, self._soilInfilS, self._soilInfilIMDmax,
+                                        self._soilInfilLu, self._soilFu, self._soilIMD, self._SoilPara, self._SurPara,self._cumuSurfaceWaterDepth, 
+                                        self._areaMask, self.dt)
         # print(self._h_internal)
         torch.cuda.empty_cache()
 
@@ -667,15 +673,20 @@ class LidCal(Godunov):
         #         wetMask_sorted = self._wetMask[sort_indices]
         #     else:
         #         wetMask_sorted = self._wetMask
-        current_wet_indices = self._wetMask.long()
+        # current_wet_indices = self._wetMask.long()
         lid_indices = (self._lidMask > 0).nonzero(as_tuple=False).flatten()
-        combined_indices = torch.cat((current_wet_indices, lid_indices))
-        unique_indices = torch.unique(combined_indices)
-        calculation_mask = unique_indices
-        if calculation_mask.numel() > 0:
-            wet_lid_types = self._lidMask[calculation_mask]
-            sort_indices = torch.argsort(wet_lid_types, stable=True)
-            wetMask_sorted = calculation_mask[sort_indices].int()
+        if lid_indices.numel() == 0:
+            return
+        wet_lid_types = self._lidMask[lid_indices]
+        sort_indices = torch.argsort(wet_lid_types, stable = True)
+        wetMask_sorted = lid_indices[sort_indices].int()
+        # combined_indices = torch.cat((current_wet_indices, lid_indices))
+        # unique_indices = torch.unique(combined_indices)
+        # calculation_mask = unique_indices
+        # if calculation_mask.numel() > 0:
+        #     wet_lid_types = self._lidMask[calculation_mask]
+        #     sort_indices = torch.argsort(wet_lid_types, stable=True)
+        #     wetMask_sorted = calculation_mask[sort_indices].int()
         n_landuse = self._landuse_index.numel()
         lidCal_new.addLidcalculation_new(wetMask_sorted, self._h_update, self._landuseMask, self._lidMask,
                                     n_landuse, self._areaMask,
