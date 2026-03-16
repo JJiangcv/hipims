@@ -279,8 +279,8 @@ __global__ void lidCalculation_kernel(
 
         xMax[0] = BIG;  // Will be adjusted per type
         xMax[1] = soilPorosity;
-        xMax[2] = storageThickness * storageVoidFrac;
-        xMax[3] = paveThickness * paveVoidFrac;
+        xMax[2] =  storageThickness;  //storageThickness * storageVoidFrac;
+        xMax[3] =  paveThickness; //paveThickness * paveVoidFrac;
 
         // Calculate Fluxes Based on LID Type
         scalar_t SurfaceInfil = 0.0;
@@ -298,7 +298,7 @@ __global__ void lidCalculation_kernel(
             // Use drainage mat as storage layer
             storageThickness = drainMatThickness;
             storageVoidFrac = drainMatVoidFrac;
-            xMax[2] = storageThickness * storageVoidFrac;
+            xMax[2] = storageThickness; //storageThickness * storageVoidFrac;
 
             // Surface to Soil Infiltration
             SurfaceInfil = (x[0] / tstep) * surfaceVoidFrac;
@@ -508,7 +508,7 @@ __global__ void lidCalculation_kernel(
                     
                 if (drainOffset <= storageDepth)
                 {
-                maxRate += (storageDepth - drainCoeff) *
+                maxRate += (storageDepth - drainOffset) *
                             storageVoidFrac / tstep;
                 }
                 maxRate = max(maxRate, 0.0);

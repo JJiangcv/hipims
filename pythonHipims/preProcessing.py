@@ -444,7 +444,7 @@ def importDEMData_And_BC(DEM_path,
                 )
     else:
         default_BC = default_BC
-    mask[mask_boundary] = default_BC * 10
+    mask[mask_boundary] = int(default_BC) * 10
     
 
     # as the index will start with 0

@@ -723,7 +723,7 @@ class LidCal(Godunov):
     def time_friction_euler_update_cuda(self, device):
         # limit the time step not bigger than the five times of the older time step
         #+(self._landuseMask >= self._landuse_index.numel()) | (self._lidMask >= 1)
-        UPPER = 10.
+        UPPER = 60.
         time_upper = self.dt * UPPER
         self._wetMask = torch.flatten(
             ((self._h_update.abs() > 0.0) |
@@ -743,9 +743,12 @@ class LidCal(Godunov):
         self._qy_update[:] = 0.
         self._z_update[:] = 0.
         self._f_dt[:] = 0.
-        self._h_internal[self._h_internal<0]=0.0
+        # self._h_internal[self._h_internal<0]=0.0
 
-        # self._cumuSurfaceWaterDepth = self._h_internal.clone()
+        thin_lid = (self._lidMask >= 1) & (self._h_internal < 1e-3)
+        self._qx_internal[thin_lid] = 0.0
+        self._qy_internal[thin_lid] = 0.0
+
         self._accelerator_dt = torch.full(self._wetMask.size(),
                                           self._maxTimeStep.item(),
                                           dtype=self._tensorType,
