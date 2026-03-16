@@ -519,7 +519,7 @@ __global__ void lidCalculation_kernel(
             storageInflow = min(storageInflow, maxRate);
             SurfaceInfil = storageInflow;
 
-            f[0] = SurfaceInfil;
+            f[0] = -SurfaceInfil;
             f[1] = 0.0;
             f[2] = (SurfaceInfil - StorageDrain) / storageVoidFrac;
             f[3] = 0.0;
@@ -675,7 +675,7 @@ __global__ void lidCalculation_kernel(
                 maxRate = availVolume / tstep + PavePerc;
                 SurfaceInfil = min(SurfaceInfil, maxRate);
             }
-            f[0] = SurfaceInfil;
+            f[0] = -SurfaceInfil;
             f[3] = (SurfaceInfil - PavePerc) / paveVoidFrac;
             if (soilThickness > 0.0)
             {
