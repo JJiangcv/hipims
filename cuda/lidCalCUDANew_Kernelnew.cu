@@ -18,31 +18,31 @@ __device__ __forceinline__ scalar_t getsoilPercRate(scalar_t soilTheta,
                                                     scalar_t soilKS,
                                                     scalar_t soilKSlope)
 {
-//   scalar_t delta;
-//   // printf("soilTheta:%f\t soilFieldCap:%f\n", soilTheta, soilFieldCap);
-//   if (soilTheta <= soilFieldCap)
-//   {
-//     return 0.0;
-//   }
-//   delta = soilPorosity - soilTheta;
-//   // printf("soilTheta:%f\t soilFieldCap:%f\t result:%f\n", soilTheta, soilFieldCap, soilKS * exp(-delta * soilKSlope));
-//   return soilKS * exp(-delta * soilKSlope);
+  scalar_t delta;
+  // printf("soilTheta:%f\t soilFieldCap:%f\n", soilTheta, soilFieldCap);
+  if (soilTheta <= soilFieldCap)
+  {
+    return 0.0;
+  }
+  delta = soilPorosity - soilTheta;
+  // printf("soilTheta:%f\t soilFieldCap:%f\t result:%f\n", soilTheta, soilFieldCap, soilKS * exp(-delta * soilKSlope));
+  return soilKS * exp(-delta * soilKSlope);
 
-// NEW POWER FUNCTION - De-Ville et al. (2025) Equation (3)
-//   K = Ks × [(θ - θfc)/(θs - θfc)]^2.5
-    if (soilTheta <= soilFieldCap)
-    {
-        return 0.0;
-    }
-    // Calculate effective saturation: Sact = (θ - θfc) / (θs - θfc)
-    scalar_t Sact = (soilTheta - soilFieldCap) / (soilPorosity - soilFieldCap);
-    // Ensure Sact is in valid range [0, 1] for numerical stability
-    Sact = max(static_cast<scalar_t>(0.0), 
-                min(static_cast<scalar_t>(1.0), Sact));
-    // Power function with n = 2.5 (from paper's calibration)
-    scalar_t n = soilKSlope;
-    scalar_t percRate = soilKS * pow(Sact, n);
-    return percRate;
+// // NEW POWER FUNCTION - De-Ville et al. (2025) Equation (3)
+// //   K = Ks × [(θ - θfc)/(θs - θfc)]^2.5
+//     if (soilTheta <= soilFieldCap)
+//     {
+//         return 0.0;
+//     }
+//     // Calculate effective saturation: Sact = (θ - θfc) / (θs - θfc)
+//     scalar_t Sact = (soilTheta - soilFieldCap) / (soilPorosity - soilFieldCap);
+//     // Ensure Sact is in valid range [0, 1] for numerical stability
+//     Sact = max(static_cast<scalar_t>(0.0), 
+//                 min(static_cast<scalar_t>(1.0), Sact));
+//     // Power function with n = 2.5 (from paper's calibration)
+//     scalar_t n = soilKSlope;
+//     scalar_t percRate = soilKS * pow(Sact, n);
+//     return percRate;
 }
 
 template <typename scalar_t>
@@ -295,67 +295,84 @@ __global__ void lidCalculation_kernel(
         // TYPE 3: GREEN ROOF
         if (lid_type == 3) // Green Roof
         {
-            // Use drainage mat as storage layer
-            storageThickness = drainMatThickness;
-            storageVoidFrac = drainMatVoidFrac;
-            xMax[2] = storageThickness; //storageThickness * storageVoidFrac;
-
-            // Surface to Soil Infiltration
-            SurfaceInfil = (x[0] / tstep) * surfaceVoidFrac;
-            f[0] = -SurfaceInfil;
-
-            // Surface infiltration from Kernel 1
-            SurfaceInfil = df[i] / tstep;
-
-            // Soil percolation
-            SoilPerc = soilLayer(soilTheta, soilThickness, soilPorosity, 
-                           soilFieldCap, soilWiltPoint, soilKS, 
-                           soilKSlope, maxRate, tstep);
-            
-            availVolume = (soilTheta - soilFieldCap) * soilThickness;
-            maxRate = max(availVolume, 0.0) / tstep;
-            SoilPerc = min(SoilPerc, maxRate);
-            SoilPerc = max(SoilPerc, 0.0);
-
-            // Drainage mat outflow
-            StorageDrain = getDrainMatOutflow(storageDepth, SoilPerc, drainMatAlpha,
-                                        dx[0], dy[0], storageVoidFrac);
-            
-            // Apply flux limiters
-            if (soilTheta >= soilPorosity && storageDepth >= storageThickness) //unit is full
+            if (drainMatThickness > 0)
             {
-                // both layers full
-                maxRate = min(SoilPerc, StorageDrain);
-                SoilPerc = maxRate;
-                StorageDrain = maxRate;
-                // adjust inflow rate to soil layer
-                SurfaceInfil = min(SurfaceInfil, maxRate);
-            }
-            else{
-                // limit drainage by available water
-                maxRate = storageDepth * storageVoidFrac / tstep;
-                if (storageDepth >= storageThickness)
-                {
-                    maxRate += SoilPerc;
-                }
-                maxRate = max(maxRate, 0.0);
-                StorageDrain = min(StorageDrain, maxRate);
+                // Use drainage mat as storage layer
+                storageThickness = drainMatThickness;
+                storageVoidFrac = drainMatVoidFrac;
+                xMax[2] = storageThickness; //storageThickness * storageVoidFrac;
 
-                // limit soil perc inflow by unused storage volume
-                maxRate = (storageThickness - storageDepth) * storageVoidFrac / tstep +
-                  StorageDrain;
+                // Surface to Soil Infiltration
+                SurfaceInfil = (x[0] / tstep) * surfaceVoidFrac;
+                f[0] = -SurfaceInfil;
+
+                // Surface infiltration from Kernel 1
+                SurfaceInfil = df[i] / tstep;
+
+                // Soil percolation
+                SoilPerc = soilLayer(soilTheta, soilThickness, soilPorosity, 
+                            soilFieldCap, soilWiltPoint, soilKS, 
+                            soilKSlope, maxRate, tstep);
+                
+                availVolume = (soilTheta - soilFieldCap) * soilThickness;
+                maxRate = max(availVolume, 0.0) / tstep;
                 SoilPerc = min(SoilPerc, maxRate);
+                SoilPerc = max(SoilPerc, 0.0);
 
-                // adjust surface infil. so soil porosity not exceeded
-                maxRate = (storageThickness - storageDepth) * storageVoidFrac / tstep 
-                  + StorageDrain;
-                SurfaceInfil = min(SurfaceInfil, maxRate);
+                // Drainage mat outflow
+                StorageDrain = getDrainMatOutflow(storageDepth, SoilPerc, drainMatAlpha,
+                                            dx[0], dy[0], storageVoidFrac);
+                
+                // Apply flux limiters
+                if (soilTheta >= soilPorosity && storageDepth >= storageThickness) //unit is full
+                {
+                    // both layers full
+                    maxRate = min(SoilPerc, StorageDrain);
+                    SoilPerc = maxRate;
+                    StorageDrain = maxRate;
+                    // adjust inflow rate to soil layer
+                    SurfaceInfil = min(SurfaceInfil, maxRate);
+                }
+                else{
+                    // limit drainage by available water
+                    maxRate = storageDepth * storageVoidFrac / tstep;
+                    if (storageDepth >= storageThickness)
+                    {
+                        maxRate += SoilPerc;
+                    }
+                    maxRate = max(maxRate, 0.0);
+                    StorageDrain = min(StorageDrain, maxRate);
+
+                    // limit soil perc inflow by unused storage volume
+                    maxRate = (storageThickness - storageDepth) * storageVoidFrac / tstep +
+                    StorageDrain;
+                    SoilPerc = min(SoilPerc, maxRate);
+
+                    // adjust surface infil. so soil porosity not exceeded
+                    maxRate = (storageThickness - storageDepth) * storageVoidFrac / tstep 
+                    + StorageDrain;
+                    SurfaceInfil = min(SurfaceInfil, maxRate);
+                }
+                f[0] = -SurfaceInfil;
+                f[1] = (SurfaceInfil - SoilPerc) / soilThickness;
+                f[2] = (SoilPerc - StorageDrain) / storageVoidFrac;
+                f[3] = 0.0;
             }
+            else
+            {
+                SurfaceInfil = df[i] / tstep;          // ← 必须加这行，从kernel1读入渗量
 
-            f[0] = -SurfaceInfil;
-            f[1] = (SurfaceInfil - SoilPerc) / soilThickness;
-            f[2] = (SoilPerc - StorageDrain) / storageVoidFrac;
-            f[3] = 0.0;
+                SoilPerc     = 0.0;
+                StorageDrain = 0.0;
+
+                maxRate = (soilPorosity - soilTheta) * soilThickness / tstep;
+                SurfaceInfil = min(SurfaceInfil, maxRate);   // 土壤满后clip
+
+                f[0] = -SurfaceInfil;
+                f[1] =  SurfaceInfil / soilThickness;
+                f[2] =  0.0;
+                f[3] =  0.0;
+            }
 
             x[0] = cumuSurfaceWaterDepth[i];
             xMax[0] = surfaceThickness;
@@ -698,9 +715,17 @@ __global__ void lidCalculation_kernel(
         // update states
         if (lid_type == 3)
         {
-            cumuSurfaceWaterDepth[i] = x[0];
-            // Check for overflow
-            if (cumuSurfaceWaterDepth[i] > surfaceThickness) {
+            // Green roof surface water is already updated in lidInfil_new.
+            // modpls_solve() treats x[0] as a flux-only state, so do not use
+            // x[0] here or the virtual berm storage will be cleared each step.
+            scalar_t actualInfil = SurfaceInfil * tstep;
+            scalar_t potentialInfil = df[i];
+            if (actualInfil < potentialInfil)
+            {
+                cumuSurfaceWaterDepth[i] += potentialInfil - actualInfil;
+            }
+            if (cumuSurfaceWaterDepth[i] > surfaceThickness)
+            {
                 scalar_t excess = cumuSurfaceWaterDepth[i] - surfaceThickness;
                 cumuSurfaceWaterDepth[i] = surfaceThickness;
                 h_update[i] += excess;
